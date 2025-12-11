@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+	color: #BBBDBC;
+	font-family: Verdana;
+}
+
+.menu {
+	float: left;
+	width: 20%;
+	text-align: center;
+}
+
+.menu a {
+	background-color: #e5e5e5;
+	padding: 8px;
+	margin-top: 7px;
+	display: block;
+	width: 100%;
+	color: black;
+}
+
+.main {
+	display: flex;
+	flex-wrap: wrap;
+	float: left;
+	padding: 0 20px;
+}
+
+.right {
+	background-color: #e5e5e5;
+	float: left;
+	width: 20%;
+	padding: 15px;
+	margin-top: 7px;
+	text-align: center;
+}
+
+.item {
+	background-color: #f2f0Ef;
+	width: 180px;
+	height: 180px;
+	margin: 10px;
+	padding: 0 8px;
+	border-radius: 6px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	position: relative;
+}
+
+.addButton {
+	background-color: #245F73;
+	border: none;
+	text-align: center;
+	align-content: center;
+	text-decoration: none;
+	font-size: 18px;
+	border-radius: 50%;
+	height: 50px;
+	width: 50px;
+	margin: 4px;
+	position: absolute;
+	bottom: 8px;
+	right: 16px;
+	text-decoration: none;
+}
+
+h3 {
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.deleteButton {
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	background-color: #245F73;
+	padding: 6px;
+	border-radius: 6px;
+	text-decoration: none;
+	background-color: #245F73;
+}
+
+@media only screen and (max-width: 620px) {
+	/* For mobile phones: */
+	.menu, .main, .right {
+		width: 100%;
+	}
+}
