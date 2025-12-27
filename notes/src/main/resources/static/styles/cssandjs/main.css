@@ -36,12 +36,16 @@ nav {
 	justify-content: center;
 	gap: 30px;
 	padding: 6px;
-	margin: 10px;
+	margin: 0;
 }
 
 nav ul {
 	list-style-type: none;
 	padding: none;
+}
+
+a:link {
+	text-decoration: none;
 }
 
 article {

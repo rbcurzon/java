@@ -8,10 +8,12 @@
 <body>
 	<nav>
 		<ul class="ulTools">
-			<li><a th:href="@{/notes/addNew}">Add</a></li>
-			<li><a th:if="${note.id != null}"
+			<li><a th:href="@{/notes/addNew}" th:text="Add"></a></li>
+			<li th:if="${note != null}"><a
 				th:href="@{/notes/edit/{id}(id=${note.id})}">Edit</a></li>
-			<li><a th:if="${note.id != null}" th:href="@{/notes/delete/{id}(id=${note.id})}">Delete</a></li>
+
+			<li th:if="${note != null}"><a
+				th:href="@{/notes/delete/{id}(id=${note.id})}">Delete</a></li>
 		</ul>
 	</nav>
 </body>

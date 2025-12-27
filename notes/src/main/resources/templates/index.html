@@ -1,44 +1,39 @@
-<!-- 
-color scheme link: 
-https://www.figma.com/resource-library/color-combinations/#combination-59-yacht-club
--->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link th:href="@{/styles/cssandjs/main.css}" rel="stylesheet" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
-	<div th:replace="fragments/header :: header"></div>
-	<div th:replace="fragments/tool-nav :: nav"></div>
-	<section style="overflow: auto">
-		<nav class="navLinks">
-			<ul>
-				<li th:each="note : ${allNotes}"><a
-					th:href="@{/notes/{id}(id=${note.id})}" th:text="${note.title}"
-					href="#"> </a></li>
-			</ul>
-		</nav>
-		<article>
-			<div th:utext="${note.content}"></div>
-		</article>
-	</section>
-	<footer>
-		<p>&copy; 2025 Copyright: Note.com</p>
-	</footer>
-	<a class="addButton fa fa-plus" th:href="@{/addNew}"></a>
-	<script type="text/javascript">
-		var notes = document.getElementsByClassName("item")
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/styles/cssandjs/main.css}" rel="stylesheet" />
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div th:replace="fragments/header :: header"></div>
+        <div th:replace="fragments/tool-nav :: nav"></div>
+        <section style="overflow: auto">
+            <nav class="navLinks">
+                <ul>
+                    <li th:each="note : ${allNotes}"><a
+                            th:href="@{/notes/{id}(id=${note.id})}" th:text="${note.title}"
+                            href="#"> </a></li>
+                </ul>
+            </nav>
+            <article th:if="${note != null}">
+                <div th:utext="${htmlContent}"></div>
+            </article>
+        </section>
+        <footer>
+            <p>&copy; 2025 Copyright: SimpleNote.com</p>
+        </footer>
+        <script type="text/javascript">
+            var notes = document.getElementsByClassName("item")
 
-		for (i = 0; i < notes.length; i++) {
-			notes[i].addEventListener("click", function(e) {
-				var noteId = this.getAttribute("data-id")
-				console.log("delete note " + noteId)
-				window.location.replace(`/edit/${noteId}`);
-			})
-		}
-	</script>
-</body>
+            for (i = 0; i < notes.length; i++) {
+            notes[i].addEventListener("click", function(e) {
+            var noteId = this.getAttribute("data-id")
+            console.log("delete note " + noteId)
+            window.location.replace(`/edit/${noteId}`);
+            })
+            }
+        </script>
+    </body>
 </html>

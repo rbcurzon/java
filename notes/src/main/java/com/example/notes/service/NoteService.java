@@ -1,7 +1,6 @@
 package com.example.notes.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,24 +23,20 @@ public class NoteService {
 
 	private ModelMapper modelMapper = new ModelMapper();
 
-	private MarkdownService markdownService = new MarkdownService();
-
 	public Note getFirstNote() {
-		return noteRepository.findFirstByOrderByCreatedAtDesc();
+		return noteRepository.findFirstByOrderByUpdatedAtDesc();
 	}
-	
+
 	public List<Note> getAllNotes() {
 		return noteRepository.findAll();
 	}
 
+	public List<Note> getAllNotesByOrder() {
+		return noteRepository.findAllByOrderByUpdatedAtDesc();
+	}
+	
 	public Note getNoteById(Long id) {
 		return noteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-	}
-
-	public Note getNodeContentAsHtml(Long id) {
-		Note note = getNoteById(id);
-		note.setContent(markdownService.convertMarkdownToHtml(note.getContent()));
-		return note;
 	}
 
 	public NoteResponseDTO createNote(NoteDTO noteDTO) {
@@ -54,4 +49,5 @@ public class NoteService {
 	public void deleteNote(Long id) {
 		noteRepository.deleteById(id);
 	}
+
 }

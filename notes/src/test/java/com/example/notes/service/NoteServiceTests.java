@@ -30,7 +30,7 @@ public class NoteServiceTests {
 
 	@Test
 	void whenGetFirstNote_thenReturnFirstNote() {
-		Mockito.when(noteRepository.findFirstByOrderByCreatedAtDesc()).thenReturn(note);
+		Mockito.when(noteRepository.findFirstByOrderByUpdatedAtDesc()).thenReturn(note);
 
 		Note noteResult = noteService.getFirstNote();
 

@@ -10,7 +10,7 @@
 	<div th:replace="fragments/tool-nav :: nav"></div>
 	<div style="overflow: auto">
 		<form action="#" method="POST" th:object="${note}"
-			th:action="@{notes/update/{id}(id=${note.id})}">
+			th:action="@{/notes/update/{id}(id=${note.id})}">
 			<div class="main">
 				<input type="text" placeholder="Title" th:field="*{title}">
 				<textarea cols="10" rows="10" th:field="*{content}"></textarea>
