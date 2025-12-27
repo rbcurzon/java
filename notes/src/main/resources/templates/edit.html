@@ -3,66 +3,19 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>New Note</title>
-<style type="text/css">
-* {
-	box-sizing: border-box;
-}
-
-.main {
-	display: flex;
-	flex-wrap: wrap;
-	float: left;
-	padding: 0 20px;
-	flex-direction: column;
-}
-
-input, textarea {
-	padding: 6px 8px;
-	background-color: #f2f0Ef;
-}
-
-input, textarea {
-	border-radius: 6px;
-	margin-top: 10px;
-	font-size: 16px;
-}
-
-.button {
-	font-size: 16px;
-	background-color: #245F73;
-	color: white;
-	width: 100%;
-	margin: 4px 2px;
-	padding: 10px 30px;
-	border-radius: 6px;
-	text-decoration: none;
-	text-align: center;
-	display: inline-block;
-}
-
-.buttonContainer {
-	display: flex;
-	width: 100%;
-}
-
-@media only screen and (max-width: 620px) {
-	/* For mobile phones: */
-	.menu, .main, .right {
-		width: 100%;
-	}
-}
-</style>
+<link th:href="@{/styles/cssandjs/main.css}" rel="stylesheet" />
 </head>
 <body style="font-family: Verdana; color: #BBBDBC">
 	<div th:replace="fragments/header :: header"></div>
+	<div th:replace="fragments/tool-nav :: nav"></div>
 	<div style="overflow: auto">
 		<form action="#" method="POST" th:object="${note}"
-			th:action="@{/update/{id}(id=${note.id})}">
+			th:action="@{notes/update/{id}(id=${note.id})}">
 			<div class="main">
 				<input type="text" placeholder="Title" th:field="*{title}">
-				<textarea cols="10" rows="10" th:field="*{note}"></textarea>
+				<textarea cols="10" rows="10" th:field="*{content}"></textarea>
 				<div class="buttonContainer">
-					<a class="button" href="#" th:href="@{/}">Back</a>
+					<a class="button" href="#" th:href="@{/notes}">Back</a>
 
 					<button class="button" type="submit">Save Note</button>
 				</div>

@@ -2,52 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>New Note</title>
-<style type="text/css">
-* {
-	box-sizing: border-box;
-}
-
-.main {
-	display: flex;
-	flex-wrap: wrap;
-	float: left;
-	padding: 0 20px;
-	flex-direction: column;
-}
-
-input, textarea {
-	padding: 6px 8px;
-	background-color: #f2f0Ef;
-}
-
-input, textarea, button {
-	border-radius: 6px;
-	margin-top: 10px;
-	font-size: 16px;
-}
-
-button {
-	background-color: #245F73;
-	color: white;
-}
-
-@media only screen and (max-width: 620px) {
-	/* For mobile phones: */
-	.menu, .main, .right {
-		width: 100%;
-	}
-}
-</style>
+<link th:href="@{/styles/cssandjs/main.css}" rel="stylesheet" />
+<title>Add Note</title>
 </head>
 <body style="font-family: Verdana; color: #BBBDBC">
 	<div th:replace="fragments/header :: header"></div>
+	<div th:replace="fragments/tool-nav :: nav"></div>
 	<div style="overflow: auto">
-		<form action="#" method="POST" th:object="${noteModel}"
-			th:action="@{/save}">
+		<form action="#" method="POST" th:object="${note}"
+			th:action="@{/notes/save}">
 			<div class="main">
 				<input type="text" placeholder="Title" th:field="*{title}">
-				<textarea cols="10" rows="10" th:field="*{note}"></textarea>
+				<textarea cols="10" rows="10" th:field="*{content}"></textarea>
 
 				<button type="submit">Save Note</button>
 			</div>

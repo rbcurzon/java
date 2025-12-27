@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{/styles/cssandjs/main.css}" rel="stylesheet" />
+</head>
+<body>
+	<nav>
+		<ul class="ulTools">
+			<li><a th:href="@{/notes/addNew}">Add</a></li>
+			<li><a th:if="${note.id != null}"
+				th:href="@{/notes/edit/{id}(id=${note.id})}">Edit</a></li>
+			<li><a th:if="${note.id != null}" th:href="@{/notes/delete/{id}(id=${note.id})}">Delete</a></li>
+		</ul>
+	</nav>
+</body>
+</html>

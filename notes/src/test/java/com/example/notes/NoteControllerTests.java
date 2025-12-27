@@ -29,24 +29,24 @@ class NoteControllerTests {
 
 	@Test
 	public void givenNotes_whenGetIndex_thenSuccess() throws Exception {
-		var result = mockMvcTester.get().uri("/").exchange();
+		var result = mockMvcTester.get().uri("/notes").exchange();
 
 		assertThat(result).hasStatusOk().hasViewName("index");
 	}
 
 	@Test
 	public void shouldCreateNoteSuccessfully() {
-		var result = mockMvcTester.post().uri("/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-				.param("title", "test title").param("note", "test note").exchange();
+		var result = mockMvcTester.post().uri("/notes/save").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+				.param("title", "test title").param("content", "test note").exchange();
 
-		assertThat(result).hasStatus(HttpStatus.FOUND).hasRedirectedUrl("/");
+		assertThat(result).hasStatus(HttpStatus.FOUND).hasRedirectedUrl("/notes");
 	}
 
 	@Test
 	public void shouldDeleteNoteSuccessfully() {
 
-		var result = mockMvcTester.get().uri("/delete/1").exchange();
-		assertThat(result).hasStatus(HttpStatus.FOUND).hasRedirectedUrl("/");
+		var result = mockMvcTester.get().uri("/notes/delete/1").exchange();
+		assertThat(result).hasStatus(HttpStatus.FOUND).hasRedirectedUrl("/notes");
 	}
 
 }

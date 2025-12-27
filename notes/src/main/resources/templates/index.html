@@ -10,26 +10,30 @@ https://www.figma.com/resource-library/color-combinations/#combination-59-yacht-
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body style="font-family: Verdana;">
+<body>
 	<div th:replace="fragments/header :: header"></div>
-	<div style="overflow: auto">
-		<div class="main">
-			<div th:each="note:${allNotes}">
-				<div class="item" th:data-id="${note.id}">
-					<a class="deleteButton fa fa-trash"
-						th:href="@{/delete/{id}(id=${note.id})}"></a>
-					<h3 th:text="${note.getTitle()}"></h3>
-					<p th:text="${note.getNote()}"></p>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div th:replace="fragments/tool-nav :: nav"></div>
+	<section style="overflow: auto">
+		<nav class="navLinks">
+			<ul>
+				<li th:each="note : ${allNotes}"><a
+					th:href="@{/notes/{id}(id=${note.id})}" th:text="${note.title}"
+					href="#"> </a></li>
+			</ul>
+		</nav>
+		<article>
+			<div th:utext="${note.content}"></div>
+		</article>
+	</section>
+	<footer>
+		<p>&copy; 2025 Copyright: Note.com</p>
+	</footer>
 	<a class="addButton fa fa-plus" th:href="@{/addNew}"></a>
 	<script type="text/javascript">
 		var notes = document.getElementsByClassName("item")
-		
+
 		for (i = 0; i < notes.length; i++) {
-			notes[i].addEventListener("click", function (e) {
+			notes[i].addEventListener("click", function(e) {
 				var noteId = this.getAttribute("data-id")
 				console.log("delete note " + noteId)
 				window.location.replace(`/edit/${noteId}`);
